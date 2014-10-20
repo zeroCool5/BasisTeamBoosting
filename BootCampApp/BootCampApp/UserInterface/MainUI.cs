@@ -25,11 +25,7 @@ namespace BootCampApp.UserInterface
         {
             ResultSheetUI aResultSheetUi = new ResultSheetUI();
             aResultSheetUi.ShowDialog();
-
         }
 
-    
-
-       
     }
 }

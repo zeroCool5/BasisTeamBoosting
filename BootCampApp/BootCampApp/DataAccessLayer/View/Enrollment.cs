@@ -10,6 +10,7 @@ namespace BootCampApp.DataAccessLayer.View
     {
         public string StudentRegNo { set; get; }
         public int CourseId { set; get; }
+        public float Result { get; set; }
         public DateTime ADateTime { get; set; }
     }
 }

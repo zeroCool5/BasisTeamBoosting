@@ -123,25 +123,30 @@ namespace BootCampApp.DataAccessLayer.GateWay
         public string EntryTheScore(Student aStudent, double score, DateTime sysDateTime)
         {
             connection.Open();
-            string checkEnrollment = string.Format("Select * FROM t_StudentEnroll WHERE Student_RegNo=@aNewReg AND Course_Id=@aNewCourse");
+            //string checkEnrollment = string.Format("Select * FROM t_StudentEnroll WHERE Student_RegNo=@aNewReg AND Course_Id=@aNewCourse");
+
+            string checkEnrollment = string.Format("SELECT Student_RegNo from t_StudentEnroll WHERE Student_RegNo=@aNewReg AND Course_Id=@aNewCourse");
             SqlCommand command = new SqlCommand(checkEnrollment, connection);
             command.Parameters.Add(new SqlParameter("@aNewReg", aStudent.RegNo));
             command.Parameters.Add(new SqlParameter("@aNewCourse", aStudent.CourseId));
-            int affectedRows = command.ExecuteNonQuery();
-
-            if (affectedRows > 0)
-            {
+            SqlDataReader aReader = command.ExecuteReader();
+            
+            if (aReader.HasRows)
+            {   connection.Close();
+                connection.Open();
+                    string query = string.Format("INSERT INTO t_Score VALUES(@aNewReg, @aNewCourse,@anScore, @aNewDate)");
+                    SqlCommand aCommand = new SqlCommand(query, connection);
+                    aCommand.Parameters.Add(new SqlParameter("@aNewReg", aStudent.RegNo));
+                    aCommand.Parameters.Add(new SqlParameter("@aNewCourse", aStudent.CourseId));
+                    aCommand.Parameters.Add(new SqlParameter("@anScore", score));
+                    aCommand.Parameters.Add(new SqlParameter("@aNewDate", sysDateTime));
+                    aCommand.ExecuteNonQuery();
+                    connection.Close();
+                    
                 
-                string query = string.Format("INSERT INTO t_Score VALUES(@aNewReg, @aNewCourse,@anScore, @aNewDate)");
-                command = new SqlCommand(query, connection);
-                command.Parameters.Add(new SqlParameter("@aNewReg", aStudent.RegNo));
-                command.Parameters.Add(new SqlParameter("@aNewCourse", aStudent.CourseId));
-                command.Parameters.Add(new SqlParameter("@anScore", score));
-                command.Parameters.Add(new SqlParameter("@aNewDate", sysDateTime));
-                int aRow = command.ExecuteNonQuery();
-                connection.Close();
-                return "Score entry has been done";
+                return "Successfully stored the score for " + aStudent.RegNo;
             }
+
             else
             {
                 connection.Close();
@@ -150,6 +155,30 @@ namespace BootCampApp.DataAccessLayer.GateWay
             }
 
 
+        }
+
+        public List<Enrollment> GetStudentResultEnrollment(string regNo)
+        {
+            connection.Open();
+            string query = "SELECT * FROM t_Score WHERE Student_RegNo='" + regNo + "'";
+            SqlCommand command = new SqlCommand(query, connection);
+            SqlDataReader aReader = command.ExecuteReader();
+            List<Enrollment> aViews = new List<Enrollment>();
+            if (aReader.HasRows)
+            {
+                while (aReader.Read())
+                {
+                    Enrollment anEnrollment = new Enrollment();
+
+                    anEnrollment.StudentRegNo = aReader[0].ToString();
+                    anEnrollment.CourseId = (int)aReader[1];
+                    anEnrollment.Result = (int) aReader[2];
+                    anEnrollment.ADateTime = (DateTime)aReader[3];
+                    aViews.Add(anEnrollment);
+                }
+            }
+            connection.Close();
+            return aViews;
         }
     }
 }

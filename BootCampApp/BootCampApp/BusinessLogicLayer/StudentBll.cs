@@ -78,5 +78,10 @@ namespace BootCampApp.BusinessLogicLayer
         {
             return aStudentGateWay.HasThisCourseEntry(aStudent);
         }
+
+        public List<Enrollment> GetStudentResultEnrollment(string regNo)
+        {
+            return aStudentGateWay.GetStudentResultEnrollment(regNo);
+        }
     }
 }
