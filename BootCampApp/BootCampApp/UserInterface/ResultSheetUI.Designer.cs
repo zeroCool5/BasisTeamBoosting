@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.enrolledCoursesDataGridView = new System.Windows.Forms.DataGridView();
+            this.enrolledResultDataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.regnoTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.findButton = new System.Windows.Forms.Button();
@@ -38,30 +42,29 @@
             this.label3 = new System.Windows.Forms.Label();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.enrolledCoursesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enrolledResultDataGridView)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // enrolledCoursesDataGridView
+            // enrolledResultDataGridView
             // 
-            this.enrolledCoursesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.enrolledCoursesDataGridView.Location = new System.Drawing.Point(18, 27);
-            this.enrolledCoursesDataGridView.Name = "enrolledCoursesDataGridView";
-            this.enrolledCoursesDataGridView.RowTemplate.Height = 24;
-            this.enrolledCoursesDataGridView.Size = new System.Drawing.Size(652, 197);
-            this.enrolledCoursesDataGridView.TabIndex = 0;
+            this.enrolledResultDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.enrolledResultDataGridView.Location = new System.Drawing.Point(14, 22);
+            this.enrolledResultDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.enrolledResultDataGridView.Name = "enrolledResultDataGridView";
+            this.enrolledResultDataGridView.RowTemplate.Height = 24;
+            this.enrolledResultDataGridView.Size = new System.Drawing.Size(489, 160);
+            this.enrolledResultDataGridView.TabIndex = 0;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.enrolledCoursesDataGridView);
-            this.groupBox2.Location = new System.Drawing.Point(12, 199);
+            this.groupBox2.Controls.Add(this.enrolledResultDataGridView);
+            this.groupBox2.Location = new System.Drawing.Point(9, 162);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(686, 252);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(514, 205);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Result";
@@ -79,34 +82,75 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.emailTextBox);
             this.groupBox1.Controls.Add(this.nameTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(9, 10);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(686, 165);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(514, 134);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Student Information";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(334, 18);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(92, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Average Score(%)";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(334, 54);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Grade Letter";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(439, 56);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(65, 20);
+            this.textBox1.TabIndex = 6;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(439, 17);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(65, 20);
+            this.textBox2.TabIndex = 7;
+            // 
             // regnoTextBox
             // 
-            this.regnoTextBox.Location = new System.Drawing.Point(124, 21);
+            this.regnoTextBox.Location = new System.Drawing.Point(93, 17);
+            this.regnoTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.regnoTextBox.Name = "regnoTextBox";
-            this.regnoTextBox.Size = new System.Drawing.Size(222, 22);
+            this.regnoTextBox.Size = new System.Drawing.Size(168, 20);
             this.regnoTextBox.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(44, 21);
+            this.label1.Location = new System.Drawing.Point(33, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 17);
+            this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Reg No";
             // 
             // findButton
             // 
-            this.findButton.Location = new System.Drawing.Point(352, 17);
+            this.findButton.Location = new System.Drawing.Point(264, 14);
+            this.findButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.findButton.Name = "findButton";
-            this.findButton.Size = new System.Drawing.Size(75, 26);
+            this.findButton.Size = new System.Drawing.Size(56, 21);
             this.findButton.TabIndex = 3;
             this.findButton.Text = "Find";
             this.findButton.UseVisualStyleBackColor = true;
@@ -115,77 +159,50 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(55, 72);
+            this.label2.Location = new System.Drawing.Point(41, 58);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 17);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Name";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(58, 119);
+            this.label3.Location = new System.Drawing.Point(44, 97);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 17);
+            this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Email";
             // 
             // emailTextBox
             // 
-            this.emailTextBox.Location = new System.Drawing.Point(124, 116);
+            this.emailTextBox.Location = new System.Drawing.Point(93, 94);
+            this.emailTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(311, 22);
+            this.emailTextBox.Size = new System.Drawing.Size(234, 20);
             this.emailTextBox.TabIndex = 1;
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(124, 67);
+            this.nameTextBox.Location = new System.Drawing.Point(93, 54);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(311, 22);
+            this.nameTextBox.Size = new System.Drawing.Size(234, 20);
             this.nameTextBox.TabIndex = 1;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(445, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(124, 17);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Average Score(%)";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(445, 67);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 17);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Grade Letter";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(585, 69);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(85, 22);
-            this.textBox1.TabIndex = 6;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(585, 21);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(85, 22);
-            this.textBox2.TabIndex = 7;
             // 
             // ResultSheetUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 457);
+            this.ClientSize = new System.Drawing.Size(536, 371);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ResultSheetUI";
             this.Text = "ResultSheetUI";
-            ((System.ComponentModel.ISupportInitialize)(this.enrolledCoursesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enrolledResultDataGridView)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -195,7 +212,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView enrolledCoursesDataGridView;
+        private System.Windows.Forms.DataGridView enrolledResultDataGridView;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
