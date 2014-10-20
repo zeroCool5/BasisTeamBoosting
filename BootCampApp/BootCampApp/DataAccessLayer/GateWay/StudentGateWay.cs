@@ -14,7 +14,6 @@ namespace BootCampApp.DataAccessLayer.GateWay
     class StudentGateWay
     {
         private SqlConnection connection;
-
         public StudentGateWay()
         {
             string conn = ConfigurationManager.ConnectionStrings["BootCamp"].ConnectionString;
@@ -123,8 +122,6 @@ namespace BootCampApp.DataAccessLayer.GateWay
         public string EntryTheScore(Student aStudent, double score, DateTime sysDateTime)
         {
             connection.Open();
-            //string checkEnrollment = string.Format("Select * FROM t_StudentEnroll WHERE Student_RegNo=@aNewReg AND Course_Id=@aNewCourse");
-
             string checkEnrollment = string.Format("SELECT Student_RegNo from t_StudentEnroll WHERE Student_RegNo=@aNewReg AND Course_Id=@aNewCourse");
             SqlCommand command = new SqlCommand(checkEnrollment, connection);
             command.Parameters.Add(new SqlParameter("@aNewReg", aStudent.RegNo));
@@ -142,8 +139,6 @@ namespace BootCampApp.DataAccessLayer.GateWay
                     aCommand.Parameters.Add(new SqlParameter("@aNewDate", sysDateTime));
                     aCommand.ExecuteNonQuery();
                     connection.Close();
-                    
-                
                 return "Successfully stored the score for " + aStudent.RegNo;
             }
 
@@ -153,7 +148,6 @@ namespace BootCampApp.DataAccessLayer.GateWay
                 return "Your Data Can't be saved since the id: " + aStudent.RegNo + " is not Enrolled for the course " +
                        aStudent.CourseId;
             }
-
 
         }
 
@@ -169,16 +163,38 @@ namespace BootCampApp.DataAccessLayer.GateWay
                 while (aReader.Read())
                 {
                     Enrollment anEnrollment = new Enrollment();
-
-                    anEnrollment.StudentRegNo = aReader[0].ToString();
-                    anEnrollment.CourseId = (int)aReader[1];
-                    anEnrollment.Result = (int) aReader[2];
-                    anEnrollment.ADateTime = (DateTime)aReader[3];
+                    anEnrollment.StudentRegNo = aReader[1].ToString();
+                    anEnrollment.CourseId = (int)aReader[2];
+                    anEnrollment.Result = (double) aReader[3];
+                    anEnrollment.ADateTime = (DateTime)aReader[4];
                     aViews.Add(anEnrollment);
                 }
             }
             connection.Close();
             return aViews;
+        }
+
+        public double ShowAverage(string regNo)
+        {
+            double getAverage = 0;
+            connection.Open();
+            
+            string query = "SELECT AVG(Course_Score) AS Average FROM t_Score WHERE Student_RegNo='" + regNo + "'";
+            SqlCommand command = new SqlCommand(query, connection);
+            using (SqlDataReader aReader = command.ExecuteReader())
+            {
+                
+                while (aReader.Read())
+                {
+                    getAverage = (double)aReader["Average"];
+                }
+
+                connection.Close();
+                
+            }
+            return getAverage;
+            
+
         }
     }
 }

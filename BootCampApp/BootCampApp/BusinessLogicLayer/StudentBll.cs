@@ -15,7 +15,8 @@ namespace BootCampApp.BusinessLogicLayer
         public CourseGateWay aCourseGateWay;
         public List<Student> Students { set; get; }
         public List<Course> Courses { set; get; }
-
+        private double Average { get; set; }
+        public string grade;
         private Student aStudent;
         private string msg="";
 
@@ -83,6 +84,33 @@ namespace BootCampApp.BusinessLogicLayer
         {
             return aStudentGateWay.GetStudentResultEnrollment(regNo);
 
+        }
+
+        public double ShowAverage(string regNo)
+        {
+            return Average = aStudentGateWay.ShowAverage(regNo);
+        }
+
+        public string ShowGrade()
+        {
+             if (Average >= 80)
+            {
+                return grade = "A+";
+            }
+             else if (Average >= 70 && Average < 80)
+            {
+                return grade = "B+";
+            }
+             else if (Average >= 60 && Average < 70)
+            {
+                return grade = "C+";
+            }
+             else if (Average >= 50 && Average < 60)
+            {
+                return grade = "D+";
+            }
+            else
+            { return grade = "F"; }
         }
     }
 }
