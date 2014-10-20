@@ -20,7 +20,7 @@ namespace BootCampApp.UserInterface
         private StudentBll aStudentBll;
         CourseBll aCourseBll = new CourseBll();
         Course aCourse=new Course();
-        private List<Enrollment> studentCourseLIsts;
+        private List<Enrollment> studentCourseLists;
 
         private void findButton_Click(object sender, EventArgs e)
         {
@@ -54,19 +54,27 @@ namespace BootCampApp.UserInterface
 
         private void enrollButton_Click(object sender, EventArgs e)
         {
-            aCourse = (Course)courseComboBox.SelectedItem;
-            aStudent.CourseId = aCourse.CourseId;
-            aDateTime = enrollmentDateTimePicker.Value.Date;
-            string msg = aStudentBll.EnrollThisRegNo(aStudent, aDateTime);
+            try
+            {
+                aCourse = (Course)courseComboBox.SelectedItem;
+                aStudent.CourseId = aCourse.CourseId;
+                aDateTime = enrollmentDateTimePicker.Value.Date;
+                string msg = aStudentBll.EnrollThisRegNo(aStudent, aDateTime);
+
+                ShowData(aStudent.RegNo);
+                MessageBox.Show(msg);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(@"Pleasr enter valid data");
+            }
             
-            ShowData(aStudent.RegNo);
-            MessageBox.Show(msg);
         }
 
         private void ShowData(string regNo)
         {
-            studentCourseLIsts = aStudentBll.GetStudentCourseEnrollment(regNo);
-            enrolledCoursesDataGridView.DataSource = studentCourseLIsts;
+            studentCourseLists = aStudentBll.GetStudentCourseEnrollment(regNo);
+            enrolledCoursesDataGridView.DataSource = studentCourseLists;
         }
     }
 }

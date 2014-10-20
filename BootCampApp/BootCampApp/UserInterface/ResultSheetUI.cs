@@ -16,8 +16,7 @@ namespace BootCampApp.UserInterface
         DateTime aDateTime = new DateTime();
         private Student aStudent;
         private StudentBll aStudentBll;
-        CourseBll aCourseBll = new CourseBll();
-        Course aCourse = new Course();
+        
         private List<Enrollment> studentResultLIsts;
         private void findButton_Click(object sender, EventArgs e)
         {
@@ -28,10 +27,11 @@ namespace BootCampApp.UserInterface
                 aStudent = aStudentBll.SearchRegNo(regnoTextBox.Text);
                 
                 aStudent.RegNo = regnoTextBox.Text;
-                ShowData();
                 nameTextBox.Text = aStudent.Name;
                 emailTextBox.Text = aStudent.Email;
-                
+                ShowResultData(aStudent.RegNo);
+                averageResultTextBox.Text = aStudentBll.ShowAverage(aStudent.RegNo).ToString();
+                GradeLetterTextBox.Text = aStudentBll.ShowGrade();
             }
             catch (Exception)
             {
@@ -39,9 +39,9 @@ namespace BootCampApp.UserInterface
             }
         }
 
-        private void ShowData()
+        private void ShowResultData(string regNo)
         {
-            studentResultLIsts = aStudentBll.GetStudentResultEnrollment(aStudent.RegNo);
+            studentResultLIsts = aStudentBll.GetStudentResultEnrollment(regNo);
             enrolledResultDataGridView.DataSource = studentResultLIsts;
         }
     }
